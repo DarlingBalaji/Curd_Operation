@@ -1,0 +1,31 @@
+<div class="container">
+    <!-- No data message -->
+    <p *ngIf="Employee.length <= 0" class="no-data text-center">There is no employee added yet!</p>
+  
+    <!-- Employee list -->
+    <table class="table table-bordered">
+      <thead class="table-success">
+        <tr>
+          <th scope="col" class="text-center">S.no</th>
+          <th scope="col">Employee Name</th>
+          <th scope="col">Employee Code</th>
+          <!-- <th scope="col">Designation</th> -->
+          <!-- <th scope="col">Phone No</th> -->
+          <th scope="col center"></th>
+        </tr>
+      </thead>
+      <tbody *ngIf="Employee.length > 0">
+        <tr *ngFor="let employee of Employee; let i = index">
+          <th scope="row" class="text-center">{{i+1}}</th>
+          <td>{{employee.EmployeeName}}</td>
+          <td>{{employee.EmployeeCode}}</td>
+          <td class="text-center">
+            <button class="btn btn-success btn-sm" [routerLink]="['/User/', employee._id]" mat-button> View </button>
+            <button class="btn btn-primary btn-sm" [routerLink]="['/Edit/', employee._id]" mat-button> Edit </button>
+            <button (click)= "removeEmployee( employee, i )" class="btn btn-danger btn-sm " mat-button> Delete </button>
+          </td>
+          <!-- <td>{{employee.phoneNumber}}</td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -1,0 +1,70 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <form  (ngSubmit)="AddEmployeeForm.form.valid && onSubmit()" #AddEmployeeForm="ngForm" novalidate>
+                <!-- Employee Name -->
+                <div class="col-lg-12 mt-2 mb-4">
+                    <div class="form-group">
+                        <label> Employee Name </label><br>
+                        <input type="text" class="form-control"
+                        placeholder="Employee Name"
+                        minlength="4" maxlength="25"
+                        [(ngModel)]="model.EmployeeName" 
+                        name="EmployeeName" 
+                        #EmployeeName="ngModel"
+                        [ngClass]="{ 'is-invalid': AddEmployeeForm.submitted && EmployeeName.invalid }"
+                        required autocomplete="off" 
+                        ><br>
+                        <mat-error *ngIf="EmployeeName.invalid && AddEmployeeForm.submitted && EmployeeName.errors?.required">EmployeeName is required</mat-error>
+                        <mat-error *ngIf="EmployeeName.invalid && AddEmployeeForm.submitted && EmployeeName.errors?.minlength">EmployeeName should have minimum 4 characters</mat-error>
+                    </div>
+                </div>
+
+                <!-- EMployees Code -->
+                <div class="col-lg-12 mt-2 mb-4">
+                    <div class="form-group">
+                        <label> Employee Name </label><br>
+                        <input type="text" class="form-control"
+                        placeholder="Employee Code"
+                        minlength="4"
+                        [(ngModel)]="model.EmployeeCode" 
+                        name="EmployeeCode" 
+                        #EmployeeCode="ngModel"
+                        [ngClass]="{ 'is-invalid': AddEmployeeForm.submitted && EmployeeCode.invalid }"
+                        required autocomplete="off" 
+                        ><br>
+                        <mat-error *ngIf="EmployeeCode.invalid && AddEmployeeForm.submitted && EmployeeCode.errors?.required">EmployeeCode is required</mat-error>
+                        <mat-error *ngIf="EmployeeCode.invalid && AddEmployeeForm.submitted && EmployeeCode.errors?.minlength">EmployeeCode should have minimum 4 characters</mat-error>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <input type="file" name="image" (change)="fileProgress($event)" />
+                    </div>
+
+                    <div class="image-preview mb-3" *ngIf="previewUrl">
+                        <img [src]="previewUrl" height="100" width="100">                 
+                    </div>
+        
+                    <div class="mb-3" *ngIf="uploadedFilePath">
+                        {{uploadedFilePath}}
+                    </div>
+
+                    <button mat-button type="button" (click)="onUpload">Upload</button>
+
+                </div>
+
+                
+                <div class="col-lg-12">
+                    <button mat-button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- 
+<span style="color:red;" *ngIf="message">{{message}}</span>
+<input #file type="file" accept='image/*' (change)="preview(file.files)" />
+<img [src]="imgURL" height="200" *ngIf="imgURL"> -->

@@ -1,0 +1,6 @@
+Image Upload Function is pending in this applicstion.
+
+-> Need to set Login and Registration work
+-> Registration Mail.
+-> Change Password
+-> Forget Password
