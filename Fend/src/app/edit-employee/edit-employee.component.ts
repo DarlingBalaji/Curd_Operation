@@ -27,12 +27,8 @@ export class EditEmployeeComponent implements OnInit {
 
   getEmployees(id){
     this.service.getEmployee('users/viewone', id).subscribe( dataupdata => {
-      this.Employee = dataupdata;
-      this.model.EmployeeName = this.Employee.EmployeeName
-      this.model.EmployeeCode = this.Employee.EmployeeCode
-      // console.log(this.model.EmployeeName)
-      // console.log("data", this.Employee)
-    })
+      this.model = dataupdata;
+    });
   }
 
   // updateEmploye(){
@@ -45,22 +41,24 @@ export class EditEmployeeComponent implements OnInit {
         var data = {
           "EmployeeName": this.model.EmployeeName,
           "EmployeeCode": this.model.EmployeeCode,
+          "address"     : this.model.EmployeeAddress,
+          "city"        : this.model.EmployeeCity,
+          "state"       : this.model.EmployeeState,
+          "country"     : this.model.EmployeeCountry
         }
         this.service.updateEmployee(id, data).subscribe(res => {
           if(res.status == true) {
             this.toastr.clear();
             this.toastr.success(res.message,'Updated Successfully!!!');
             this.router.navigateByUrl('/View-Employee');
-            // this.router.navigate(['/View-Employee']);
           }
           else {
             this.toastr.clear();
             this.toastr.error(res.message,'Oops');
           }
-            // console.log('Content updated successfully!')
-          }, (error) => {
-            console.log(error)
-          })
+        }, (error) => {
+          console.log(error)
+        })
       }
       else{
         alert("SomeThing Went Wrong")

@@ -5,7 +5,7 @@ var EmployeeDetails = require('../model/user');
 // var common = require('../helpers/common');
 // var mailhelper = require('../helpers/mailhelper');
 var multer = require('multer');
-var cloudinary = require('../config/config');
+var cloudinary = require('../helpers/cloudconfig');
 
 
 // Multer
@@ -43,12 +43,13 @@ router.post('/uploads',upload.single('image'), (req, res) => {
 
 router.post('/register', (req, res) => {
 	try {
-		var request = req.body
+		var request = req.body;
+		console.log('Add Profile', request);
 			var myObj = new EmployeeDetails(request)
 			myObj.save()
 				datas = {
 					status : true,
-					message : "Registered Successfully"
+					message : "Profile added"
 				};
 				res.json(datas)
 		}
@@ -57,7 +58,7 @@ router.post('/register', (req, res) => {
 		console.log(e)
 		datas = {
 			status : false,
-			message : "Registeration In-Completed"
+			message : "Profile not added"
 		};
 	}
 })
@@ -65,6 +66,7 @@ router.post('/register', (req, res) => {
 
 router.get('/View', (req, res) => {
 	EmployeeDetails.find((error, data) => {
+		console.log('View all', data);
 		if (data) {
 			res.json(data)
 	  }
@@ -72,12 +74,13 @@ router.get('/View', (req, res) => {
 })
 
 router.get('/viewone/:id', (req, res) => {
+	console.log('req', req.params.id);
 	EmployeeDetails.findById(req.params.id, (error, data) => {
 		console.log("data", data)
     if (error) {
       return (error)
     } else {
-      res.json(data)
+      res.json(data);
     }
   })
 })

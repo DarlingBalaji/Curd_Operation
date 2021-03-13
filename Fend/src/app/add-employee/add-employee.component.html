@@ -1,66 +1,123 @@
 <section>
     <div class="container">
-        <div class="row">
-            <form  (ngSubmit)="AddEmployeeForm.form.valid && onSubmit()" #AddEmployeeForm="ngForm" novalidate>
-                <!-- Employee Name -->
-                <div class="col-lg-12 mt-2 mb-4">
-                    <div class="form-group">
-                        <label> Employee Name </label><br>
-                        <input type="text" class="form-control"
-                        placeholder="Employee Name"
-                        minlength="4" maxlength="25"
-                        [(ngModel)]="model.EmployeeName" 
-                        name="EmployeeName" 
-                        #EmployeeName="ngModel"
-                        [ngClass]="{ 'is-invalid': AddEmployeeForm.submitted && EmployeeName.invalid }"
-                        required autocomplete="off" 
-                        ><br>
-                        <mat-error *ngIf="EmployeeName.invalid && AddEmployeeForm.submitted && EmployeeName.errors?.required">EmployeeName is required</mat-error>
-                        <mat-error *ngIf="EmployeeName.invalid && AddEmployeeForm.submitted && EmployeeName.errors?.minlength">EmployeeName should have minimum 4 characters</mat-error>
-                    </div>
+        <form class="row" (ngSubmit)="AddEmployeeForm.form.valid && onSubmit()" #AddEmployeeForm="ngForm" novalidate>
+
+            <!-- Employee Name -->
+            <div class="col-lg-6 mt-2">
+                <div class="form-group">
+                    <label> Employee Name </label><br>
+                    <input type="text" class="form-control"
+                    placeholder="Employee Name"
+                    minlength="4" maxlength="25"
+                    [(ngModel)]="model.EmployeeName" 
+                    name="EmployeeName" 
+                    #EmployeeName="ngModel"
+                    [ngClass]="{ 'is-invalid': AddEmployeeForm.submitted && EmployeeName.invalid }"
+                    required autocomplete="off" 
+                    ><br>
+                    <mat-error *ngIf="EmployeeName.invalid && AddEmployeeForm.submitted && EmployeeName.errors?.required">Name is required</mat-error>
+                    <mat-error *ngIf="EmployeeName.invalid && AddEmployeeForm.submitted && EmployeeName.errors?.pattern">Only letters allowed</mat-error>
                 </div>
+            </div>
+            <!-- Employee Name -->
 
-                <!-- EMployees Code -->
-                <div class="col-lg-12 mt-2 mb-4">
-                    <div class="form-group">
-                        <label> Employee Name </label><br>
-                        <input type="text" class="form-control"
-                        placeholder="Employee Code"
-                        minlength="4"
-                        [(ngModel)]="model.EmployeeCode" 
-                        name="EmployeeCode" 
-                        #EmployeeCode="ngModel"
-                        [ngClass]="{ 'is-invalid': AddEmployeeForm.submitted && EmployeeCode.invalid }"
-                        required autocomplete="off" 
-                        ><br>
-                        <mat-error *ngIf="EmployeeCode.invalid && AddEmployeeForm.submitted && EmployeeCode.errors?.required">EmployeeCode is required</mat-error>
-                        <mat-error *ngIf="EmployeeCode.invalid && AddEmployeeForm.submitted && EmployeeCode.errors?.minlength">EmployeeCode should have minimum 4 characters</mat-error>
-                    </div>
+            <!-- Employees Code -->
+            <div class="col-lg-6 mt-2">
+                <div class="form-group">
+                    <label> Employee Name </label><br>
+                    <input type="text" class="form-control"
+                    placeholder="Employee Code"
+                    minlength="4"
+                    [(ngModel)]="model.EmployeeCode" 
+                    name="EmployeeCode" 
+                    #EmployeeCode="ngModel"
+                    [ngClass]="{ 'is-invalid': AddEmployeeForm.submitted && EmployeeCode.invalid }"
+                    required autocomplete="off" 
+                    ><br>
+                    <mat-error *ngIf="EmployeeCode.invalid && AddEmployeeForm.submitted && EmployeeCode.errors?.required">EmployeeCode is required</mat-error>
+                    <mat-error *ngIf="EmployeeCode.invalid && AddEmployeeForm.submitted && EmployeeCode.errors?.minlength">EmployeeCode should have minimum 4 characters</mat-error>
                 </div>
+            </div>
+            <!-- Employees Code -->
 
-                <!-- <div class="col-lg-12">
-                    <div class="form-group">
-                        <input type="file" name="image" (change)="fileProgress($event)" />
-                    </div>
-
-                    <div class="image-preview mb-3" *ngIf="previewUrl">
-                        <img [src]="previewUrl" height="100" width="100">                 
-                    </div>
-        
-                    <div class="mb-3" *ngIf="uploadedFilePath">
-                        {{uploadedFilePath}}
-                    </div>
-
-                    <button mat-button type="button" (click)="onUpload">Upload</button>
-
-                </div> -->
-
-                
-                <div class="col-lg-12">
-                    <button mat-button type="submit">Submit</button>
+            <!-- Employee Address -->
+            <div class="col-lg-12 mt-2">
+                <div class="form-group">
+                    <label> Employee Address </label>
+                    <textarea placeholder="Employee Address" cols="15"
+                    [(ngModel)]="model.EmployeeAddress" class="form-control"
+                    name="EmployeeAddress" #EmployeeAddress="ngModel"
+                    [ngClass]="{ 'is-invalid': AddEmployeeForm.submitted && EmployeeAddress.invalid }"
+                    required autocomplete="off"></textarea><br>
+                    <mat-error *ngIf="EmployeeAddress.invalid && AddEmployeeForm.submitted && EmployeeAddress.errors?.required">EmployeeAddress is required</mat-error>
                 </div>
-            </form>
-        </div>
+            </div>
+            <!-- Employees Address -->
+            
+            <!-- Employee City -->
+            <div class="col-lg-6 mt-2">
+                <div class="form-group">
+                    <label> Employee City </label><br>
+                    <input type="text" class="form-control"
+                    placeholder="Employee City"
+                    [(ngModel)]="model.EmployeeCity" 
+                    name="EmployeeCity" 
+                    pattern="^[a-zA-Z\- ]+$"
+                    #EmployeeCity="ngModel"
+                    [ngClass]="{ 'is-invalid': AddEmployeeForm.submitted && EmployeeCity.invalid }"
+                    required autocomplete="off" 
+                    ><br>
+                    <mat-error *ngIf="EmployeeCity.invalid && AddEmployeeForm.submitted && EmployeeCity.errors?.required">City is required</mat-error>
+                    <mat-error *ngIf="EmployeeCity.invalid && AddEmployeeForm.submitted && EmployeeCity.errors?.pattern">Incorrect city name</mat-error>
+                </div>
+            </div>
+            <!-- Employee City -->
+
+
+            <!-- Employee State -->
+            <div class="col-lg-6 mt-2">
+                <div class="form-group">
+                    <label> Employee State </label><br>
+                    <input type="text" class="form-control"
+                    placeholder="Employee State"
+                    pattern="^[a-zA-Z\- ]+$"
+                    [(ngModel)]="model.EmployeeState" 
+                    name="EmployeeState" 
+                    #EmployeeState="ngModel"
+                    [ngClass]="{ 'is-invalid': AddEmployeeForm.submitted && EmployeeState.invalid }"
+                    required autocomplete="off" 
+                    ><br>
+                    <mat-error *ngIf="EmployeeState.invalid && AddEmployeeForm.submitted && EmployeeState.errors?.required">State is required</mat-error>
+                    <mat-error *ngIf="EmployeeState.invalid && AddEmployeeForm.submitted && EmployeeState.errors?.pattern">Incorrect state</mat-error>
+                </div>
+            </div>
+            <!-- Employee State -->
+
+            <!-- Employee Country -->
+            <div class="col-lg-6 mt-2">
+                <div class="form-group">
+                    <label> Employee Country </label><br>
+                    <input type="text" class="form-control"
+                    placeholder="Employee Country"
+                    minlength="4"
+                    [(ngModel)]="model.EmployeeCountry" 
+                    name="EmployeeCountry" 
+                    #EmployeeCountry="ngModel"
+                    [ngClass]="{ 'is-invalid': AddEmployeeForm.submitted && EmployeeCountry.invalid }"
+                    required autocomplete="off"><br>
+                    <mat-error *ngIf="EmployeeCountry.invalid && AddEmployeeForm.submitted && EmployeeCountry.errors?.required">Country is required</mat-error>
+                    <mat-error *ngIf="EmployeeCountry.invalid && AddEmployeeForm.submitted && EmployeeCountry.errors?.minlength">Incorrect country</mat-error>
+                </div>
+            </div>
+            <!-- Employee Country -->
+
+            <!-- Button -->
+            <div class="col-lg-12">
+                <button mat-button type="submit">Submit</button>
+            </div>
+            <!-- Button -->
+
+        </form>
     </div>
 </section>
 

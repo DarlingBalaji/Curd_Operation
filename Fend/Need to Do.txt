@@ -1,9 +1,18 @@
-Image Upload Function is pending in this applicstion.
-
+Front-end
+-> Image upload in fornt end.
+-> Need to add phone number, profile image and date
 -> Need to set Login and Registration work
 -> Registration Mail.
 -> Change Password
 -> Forget Password
+
+-> Image upload ( Completed in back end ).
+-> Need to set Login and Registration work
+-> Registration Mail.
+-> Change Password
+-> Forget Password
+-> phone number and date.
+
 echo "# Curd_Operation" >> README.md
 git init
 git add README.md
@@ -15,10 +24,6 @@ git push -u origin master
 
 
 git@github.com:DarlingBalaji/Curd_Operation.git
-
-
-
-
 
 git init
 git add README.md

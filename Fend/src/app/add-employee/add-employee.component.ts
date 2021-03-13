@@ -22,18 +22,21 @@ export class AddEmployeeComponent implements OnInit {
     var datas = {
       "EmployeeName": this.model.EmployeeName,
       "EmployeeCode": this.model.EmployeeCode,
+      "address"     : this.model.EmployeeAddress,
+      "city"        : this.model.EmployeeCity,
+      "state"       : this.model.EmployeeState,
+      "country"     : this.model.EmployeeCountry
     }
     this.service.postfunction('users/register',datas).subscribe( res => {
       if(res.status == true) {
         this.toastr.clear();
-        this.toastr.success(res.message,'Account Created Successfully!!!');
+        this.toastr.success(res.message);
         this.router.navigate(['/View-Employee']);
       }
       else {
         this.toastr.clear();
-        this.toastr.error(res.message,'Oops');
+        this.toastr.error(res.message);
       }
     })
-    // this.toastr.success('Hello world!', 'Toastr fun!');
   }
 }

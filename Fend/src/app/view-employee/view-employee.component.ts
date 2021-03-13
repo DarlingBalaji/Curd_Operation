@@ -10,11 +10,10 @@ export class ViewEmployeeComponent implements OnInit {
   
   Employee:any = [];
 
-  constructor(private service : CommonService) { 
-    this.readEmployee();
-  }             
+  constructor(private service : CommonService) { }             
   
   ngOnInit() {
+    this.readEmployee();
   }
 
   readEmployee(){
