@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var config = require('./config/config');
-
+const multer = require('multer');
 
 const port = "3800"
 var indexRouter = require('./routes/index');
@@ -51,9 +51,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 
 // error handler
@@ -68,7 +68,7 @@ app.use(function(err, req, res, next) {
 });
 
 // DB CONNECTION
-var db = mongoose.connection.openUri('mongodb://localhost:27017/Osiz_LBC',{ useNewUrlParser: true, useUnifiedTopology: true });
+var db = mongoose.connection.openUri('mongodb://localhost:27017/basic',{ useNewUrlParser: true, useUnifiedTopology: true });
 
 db.on('error', console.error.bind(console, 'connection error:'));
 

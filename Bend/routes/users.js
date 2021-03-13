@@ -4,12 +4,41 @@ var router = express.Router();
 var EmployeeDetails = require('../model/user');
 // var common = require('../helpers/common');
 // var mailhelper = require('../helpers/mailhelper');
-multer = require('multer'),
+var multer = require('multer');
+var cloudinary = require('../config/config');
 
 
+// Multer
+var storage = multer.diskStorage({
+	destination:function(req, file,cb){
+	if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+		cb(null, './public/stylesheets/assets/');
+	} else {
+		cb({message: 'this file is neither a video or image file'}, false)
+	}
+	},
+	filename: function(req, file, cb){
+	cb(null, file.originalname);
+	}
+	})
+	var upload = multer({storage:storage});
+
+
+	
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
+});
+
+router.post('/uploads',upload.single('image'), (req, res) => {
+	let file_s = req.file;
+	console.log('Files', file_s);
+	cloudinary.uploads(file_s.path).then(data=>{
+		console.log('data',data);
+	}).catch(err=>{
+		c;onsole.log('err',err)
+	});
+	console.log(req.file);
 });
 
 router.post('/register', (req, res) => {
@@ -37,17 +66,12 @@ router.post('/register', (req, res) => {
 router.get('/View', (req, res) => {
 	EmployeeDetails.find((error, data) => {
 		if (data) {
-	// 		return next(error)
-	//   	} else {
 			res.json(data)
 	  }
 	})
 })
 
 router.get('/viewone/:id', (req, res) => {
-	// var Ep=req.body
-	// console.log(Ep)
-	// var emp = req.body
 	EmployeeDetails.findById(req.params.id, (error, data) => {
 		console.log("data", data)
     if (error) {
@@ -57,6 +81,7 @@ router.get('/viewone/:id', (req, res) => {
     }
   })
 })
+
 
 // Update employee
 router.put('/update/:id', (req, res) => {
@@ -75,7 +100,9 @@ router.put('/update/:id', (req, res) => {
 		// console.log('Data updated successfully')
 	  }
 	})
-  })
+})
+
+
 
 // Delete employee
 router.delete('/delete/:id', (req, res, next) => {
@@ -90,38 +117,5 @@ router.delete('/delete/:id', (req, res, next) => {
 	  }
 	})
   })
-
-
-
-// *************************************************************** //
-// Multer File upload settings
-const DIR = './public/';
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, DIR);
-  },
-  filename: (req, file, cb) => {
-    const fileName = file.originalname.toLowerCase().split(' ').join('-');
-    cb(null, fileName)
-  }
-});
-
-
-// Multer Mime Type Validation
-var upload = multer({
-  storage: storage,
-  limits: {
-    fileSize: 1024 * 1024 * 5
-  },
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
-      cb(null, true);
-    } else {
-      cb(null, false);
-      return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
-    }
-  }
-});
 
 module.exports = router;

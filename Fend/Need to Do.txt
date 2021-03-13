@@ -4,3 +4,25 @@ Image Upload Function is pending in this applicstion.
 -> Registration Mail.
 -> Change Password
 -> Forget Password
+echo "# Curd_Operation" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/DarlingBalaji/Curd_Operation.git
+git remote add origin https://github.com/DarlingBalaji/V2Impex.git
+
+git push -u origin master
+
+
+git@github.com:DarlingBalaji/Curd_Operation.git
+
+
+
+
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:DarlingBalaji/V2Impex.git
+git push -u origin main

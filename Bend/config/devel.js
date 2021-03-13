@@ -6,9 +6,9 @@ module.exports = {
 	iv :'S19h8AnT21H8n14I',
 	jwtToken : 'TradeXToken',
 	PORT : 8449,
-	// cloudinaryData : {
-	// 	cloud_name: 'balaji-web', 
-	//  	api_key: '555555123388652', 
-	//  	api_secret: 'e8eWtDi1DUNkRTKvAuxaAlFJVNU'
-	// },
+	cloudinaryData : {
+		cloud_name: 'curd-operation-site', 
+	 	api_key: '869856864277279', 
+	 	api_secret: 'Tfh6NMOfwwjt2KKHwHikSiBN3LA'
+	},
 }
